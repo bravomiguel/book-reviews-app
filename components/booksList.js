@@ -10,24 +10,9 @@ import ListItemText from '@mui/material/ListItemText';
 import Rating from '@mui/material/Rating';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 
-export default function BooksList() {
-  const data = [
-    {
-      _id: '1',
-      title: 'Harry Potter',
-      avatarUrl: 'https://m.media-amazon.com/images/I/81m1s4wIPML.jpg',
-      author: 'J.K. Rowling',
-      rating: 3.5,
-    },
-    {
-      _id: '2',
-      title: 'Harry Potter',
-      avatarUrl: 'https://m.media-amazon.com/images/I/81m1s4wIPML.jpg',
-      author: 'J.K. Rowling',
-      rating: 3.5,
-    },
-  ];
+import data from '../dummyData';
 
+export default function BooksList() {
   if (data.length === 0) {
     return <p>Add a new review.</p>;
   }
