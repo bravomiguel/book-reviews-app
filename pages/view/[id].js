@@ -9,14 +9,11 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 
+import data from '../../dummyData';
+
 export default function View({ id }) {
-  const book = {
-    _id: '1',
-    title: 'Harry Potter',
-    avatarUrl: 'https://m.media-amazon.com/images/I/81m1s4wIPML.jpg',
-    author: 'J.K. Rowling',
-    rating: 3.5,
-  };
+  const idx = data.findIndex((book) => (book._id === id));
+  const book = data.at(idx);
 
   const formRowStyle = {
     marginBlockEnd: '1.5em',
@@ -223,14 +220,8 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const paths = [
-    {
-      params: {
-        id: '1',
-      },
-    },
-  ];
-
+  const books = data;
+  const paths = books.map((book) => ({params: { id: book._id}}));
   return {
     paths,
     fallback: true,

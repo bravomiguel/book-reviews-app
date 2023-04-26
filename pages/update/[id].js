@@ -1,3 +1,5 @@
+import data from '../../dummyData';
+
 export default function Update({id}) {
   return (
     <div>Update {id}</div>
@@ -13,15 +15,10 @@ export async function getStaticProps({params}) {
 }
 
 export async function getStaticPaths() {
-  const paths = [
-    {
-      params: {
-        id: "1",
-      },
-    },
-  ]
+  const books = data;
+  const paths = books.map((book) => ({params: { id: book._id}}));
   return {
     paths,
     fallback: true,
-  }
+  };
 }
