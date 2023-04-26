@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import IconButton from '@mui/material/IconButton';
@@ -17,52 +18,56 @@ export default function BooksList() {
     return <p>Add a new review.</p>;
   }
 
+  const router = useRouter();
+
   return (
     <List>
       {data.map(({ title, rating, _id, avatarUrl }) => (
-        <ListItem
-          key={_id}
-          sx={{ marginBottom: '0.5em', color: 'inherit' }}
-          href={`/view/${_id}`}
-          component={Link}
-        >
-          <ListItemAvatar>
-            <Avatar
-              variant="square"
-              src={avatarUrl}
-              imgProps={{ loading: 'lazy' }}
-              sx={{ width: '2em', height: '100%', border: '0.5px solid grey' }}
+        <div onClick={() => {router.push(`/view/${_id}`)}} style={{ cursor: "pointer" }}>
+          <ListItem
+            key={_id}
+            sx={{ marginBottom: '0.5em', color: 'inherit' }}
+            // href={`/view/${_id}`}
+            // component={Link}
+          >
+            <ListItemAvatar>
+              <Avatar
+                variant="square"
+                src={avatarUrl}
+                imgProps={{ loading: 'lazy' }}
+                sx={{ width: '2em', height: '100%', border: '0.5px solid grey' }}
+              >
+                {avatarUrl ? null : <AutoStoriesIcon sx={{ height: '2.4em' }} />}
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary={title}
+              secondary={
+                <Rating
+                  name="half-rating-read"
+                  defaultValue={rating}
+                  precision={0.5}
+                  readOnly
+                />
+              }
+            />
+            <IconButton
+              aria-label="update"
+              href={`/update/${_id}`}
+              component={Link}
             >
-              {avatarUrl ? null : <AutoStoriesIcon sx={{ height: '2.4em' }} />}
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText
-            primary={title}
-            secondary={
-              <Rating
-                name="half-rating-read"
-                defaultValue={rating}
-                precision={0.5}
-                readOnly
-              />
-            }
-          />
-          <IconButton
-            aria-label="update"
-            href={`/update/${_id}`}
-            component={Link}
-          >
-            <EditIcon />
-          </IconButton>
-          <IconButton
-            aria-label="delete"
-            onClick={() => {}}
-            href={`/`}
-            component={Link}
-          >
-            <DeleteIcon />
-          </IconButton>
-        </ListItem>
+              <EditIcon />
+            </IconButton>
+            <IconButton
+              aria-label="delete"
+              onClick={() => {}}
+              href={`/`}
+              component={Link}
+            >
+              <DeleteIcon />
+            </IconButton>
+          </ListItem>
+        </div>
       ))}
     </List>
   );
