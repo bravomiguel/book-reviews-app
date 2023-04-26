@@ -1,3 +1,5 @@
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import Toolbar from '@mui/material/Toolbar';
@@ -6,6 +8,7 @@ import AddIcon from '@mui/icons-material/Add';
 import Fab from '@mui/material/Fab';
 
 export default function Header() {
+  const router = useRouter();
   return (
     <AppBar
       elevation={0}
@@ -14,7 +17,9 @@ export default function Header() {
       <Toolbar sx={{ gap: '1em', height: '4em', display: 'flex', justifyContent: 'space-between', paddingTop: {xs:'3.5em', sm: '1em'}, paddingBottom: '1em' }}>
         <Button
           variant='text'
-          onClick={() => {}}
+          onClick={() => {
+            router.push('/');
+          }}
           sx={{
             color: 'inherit',
             textTransform: 'none',
@@ -28,8 +33,8 @@ export default function Header() {
         <div style={{display: 'flex', alignItems: 'center', gap: '0.5em'}}>
           <Typography
             variant="button"
-            // component={NavLink}
-            to="/add"
+            component={Link}
+            href="/add"
             sx={{
               textDecoration: 'none',
               color: 'inherit',
@@ -42,8 +47,8 @@ export default function Header() {
           <Fab
             color="secondary"
             aria-label="add"
-            // component={NavLink}
-            to="/add"
+            component={Link}
+            href="/add"
             sx={{
               height: '3em',
               width: '3em',

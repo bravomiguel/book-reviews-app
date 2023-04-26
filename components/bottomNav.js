@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
@@ -30,14 +31,14 @@ export default function BottomNav() {
       <BottomNavigationAction
         label="Reviews"
         icon={<AutoStoriesIcon />}
-        // component={Link}
-        to={'/'}
+        component={Link}
+        href={'/'}
       />
       <BottomNavigationAction
         label="New Review"
         icon={<AddCircleIcon />}
-        // component={Link}
-        to={'/add'}
+        component={Link}
+        href={'/add'}
       />
     </BottomNavigation>
   );

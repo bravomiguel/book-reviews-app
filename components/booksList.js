@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import IconButton from '@mui/material/IconButton';
@@ -19,7 +20,7 @@ export default function BooksList() {
       rating: 3.5,
     },
     {
-      _id: '1',
+      _id: '2',
       title: 'Harry Potter',
       avatarUrl: 'https://m.media-amazon.com/images/I/81m1s4wIPML.jpg',
       author: 'J.K. Rowling',
@@ -37,8 +38,8 @@ export default function BooksList() {
         <ListItem
           key={_id}
           sx={{ marginBottom: '0.5em', color: 'inherit' }}
-          to={`/view/${_id}`}
-          // component={Link}
+          href={`/view/${_id}`}
+          component={Link}
         >
           <ListItemAvatar>
             <Avatar
@@ -63,16 +64,16 @@ export default function BooksList() {
           />
           <IconButton
             aria-label="update"
-            to={`/update/${_id}`}
-            // component={Link}
+            href={`/update/${_id}`}
+            component={Link}
           >
             <EditIcon />
           </IconButton>
           <IconButton
             aria-label="delete"
             onClick={() => {}}
-            to={`/`}
-            // component={Link}
+            href={`/`}
+            component={Link}
           >
             <DeleteIcon />
           </IconButton>
