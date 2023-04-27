@@ -3,13 +3,21 @@ import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { selectBnDisplay, selectBnValue, setBnValue } from '@/redux/slices/bottomNavSlice';
 
 export default function BottomNav() {
+  const bnValue = useSelector(selectBnValue);
+  const bnDisplay = useSelector(selectBnDisplay);
+  const dispatch = useDispatch();
+
   return (
     <BottomNavigation
       showLabels
-      value={0}
+      value={bnValue}
       onChange={(event, newValue) => {
+        dispatch(setBnValue(newValue));
       }}
       sx={{
         position: 'fixed',
@@ -19,7 +27,7 @@ export default function BottomNav() {
         height: '4em',
         backgroundColor: '#CC5500',
         display: {
-          xs: 'flex',
+          xs: `${bnDisplay}`,
           sm: 'none',
         },
         paddingBottom: '3.5em',
