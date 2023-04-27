@@ -13,6 +13,7 @@ import theme from '@/theme/theme';
 import Header from '@/components/header';
 import BottomNav from '@/components/bottomNav';
 import '../styles/globals.css';
+import OfflineWarner from '@/components/offlineWarner';
 
 export default function App({ Component, pageProps }) {
   return (
@@ -26,6 +27,7 @@ export default function App({ Component, pageProps }) {
         <ThemeProvider theme={theme}>
           <CssBaseline>
             <header>
+              <OfflineWarner />
               <Header />
             </header>
             <main>
