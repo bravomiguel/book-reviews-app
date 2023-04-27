@@ -23,9 +23,9 @@ export default function BooksList() {
   return (
     <List>
       {data.map(({ title, rating, _id, avatarUrl }) => (
-        <div onClick={() => {router.push(`/view/${_id}`)}} style={{ cursor: "pointer" }}>
+        <div key={_id} onClick={() => {router.push(`/view/${_id}`)}} style={{ cursor: "pointer" }}>
           <ListItem
-            key={_id}
+            // key={_id}
             sx={{ marginBottom: '0.5em', color: 'inherit' }}
             // href={`/view/${_id}`}
             // component={Link}
@@ -53,16 +53,19 @@ export default function BooksList() {
             />
             <IconButton
               aria-label="update"
-              href={`/update/${_id}`}
-              component={Link}
+              onClick={(event) => {
+                event.stopPropagation();
+                router.push(`/update/${_id}`);
+                }}
             >
               <EditIcon />
             </IconButton>
             <IconButton
               aria-label="delete"
-              onClick={() => {}}
-              href={`/`}
-              component={Link}
+              onClick={(event) => {
+                event.stopPropagation();
+                router.push(`/`);
+                }}
             >
               <DeleteIcon />
             </IconButton>
