@@ -1,24 +1,64 @@
-import { useEffect } from "react";
-import BookSearch from "@/components/bookSearch"
-import BookForm from "@/components/forms/bookForm"
-import Typography from "@mui/material/Typography"
-import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import Typography from '@mui/material/Typography';
 
-import { setBnValue } from "@/redux/slices/bottomNavSlice";
+import BookSearch from '@/components/bookSearch';
+import BookForm from '@/components/forms/bookForm';
+import { useSelector, useDispatch } from 'react-redux';
+import { setBnValue } from '@/redux/slices/bottomNavSlice';
+import {
+  searchBooks,
+  setValue,
+  setInputValue,
+  clearResults,
+  selectValue,
+  selectInputValue,
+  selectResults,
+} from '@/redux/slices/bookSearchSlice';
 
 export default function Add() {
-    // make sure bottom nav set to add book
-    const dispatch = useDispatch();
-    useEffect(() => {
-      dispatch(setBnValue(1));
-    }, []);
+  // make sure bottom nav set to add book
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setBnValue(1));
+  }, []);
+
+  // get book search state
+  const searchValue = useSelector(selectValue);
+  const searchInputValue = useSelector(selectInputValue);
+  const searchResults = useSelector(selectResults);
+  // set book search state to blank on loading page
+  useEffect(() => {
+    dispatch(setValue(null));
+    dispatch(setInputValue(''));
+    dispatch(clearResults());
+  }, []);
+  // update search bar with option chosen
+  const searchOnChange = (event, newValue) => {
+    dispatch(setValue(newValue));
+  };
+  // update search bar input values and search results each time input value changes
+  const searchOnInputChange = (event, newInputValue) => {
+    dispatch(setInputValue(newInputValue));
+    if (searchInputValue.length === 0) {
+      dispatch(clearResults());
+      return;
+    }
+    dispatch(searchBooks(searchInputValue));
+  };
+
   return (
     <>
       <Typography variant="h4" component="h3" sx={{ marginBottom: '0.5em' }}>
         Add Review
       </Typography>
-      <BookSearch />
+      <BookSearch
+        value={searchValue}
+        inputValue={searchInputValue}
+        results={searchResults}
+        onChange={searchOnChange}
+        onInputChange={searchOnInputChange}
+      />
       <BookForm />
     </>
-  )
+  );
 }
