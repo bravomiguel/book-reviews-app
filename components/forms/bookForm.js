@@ -48,18 +48,18 @@ export default function BookForm({ book, submitHandler = () => {}, searchValue =
   });
 
   // pre-populate form with book search values
-  // useEffect(() => {
-  //   if (searchValue !== null) {
-  //     reset({
-  //       ...defaults,
-  //       title: searchValue?.title,
-  //       author: searchValue?.author,
-  //       avatarUrl: searchValue?.avatarUrl,
-  //     });
-  //   } else {
-  //     reset(defaults);
-  //   }
-  // }, [searchValue]);
+  useEffect(() => {
+    if (searchValue !== null) {
+      reset({
+        ...defaults,
+        title: searchValue?.title,
+        author: searchValue?.author,
+        avatarUrl: searchValue?.avatarUrl,
+      });
+    } else {
+      reset(defaults);
+    }
+  }, [searchValue]);
 
   // pre-populate form if book passed (i.e. when updating)?
   useEffect(() => {

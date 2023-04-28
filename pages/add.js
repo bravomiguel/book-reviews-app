@@ -58,7 +58,7 @@ export default function Add() {
         onChange={searchOnChange}
         onInputChange={searchOnInputChange}
       />
-      <BookForm />
+      <BookForm searchValue={searchValue} />
     </>
   );
 }
