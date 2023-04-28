@@ -14,6 +14,7 @@ import Header from '@/components/header';
 import BottomNav from '@/components/bottomNav';
 import '../styles/globals.css';
 import OfflineWarner from '@/components/offlineWarner';
+import SnackBar from '@/components/snackbar';
 
 export default function App({ Component, pageProps }) {
   return (
@@ -39,6 +40,7 @@ export default function App({ Component, pageProps }) {
                 }}
               >
                 <Component {...pageProps} />
+                <SnackBar />
               </Container>
             </main>
             <footer>
