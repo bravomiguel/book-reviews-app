@@ -7,6 +7,12 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { Provider } from 'react-redux';
+import { useState } from 'react';
+import {
+  Hydrate,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
 
 import { store } from '@/redux/app/store';
 import theme from '@/theme/theme';
@@ -17,12 +23,32 @@ import OfflineWarner from '@/components/offlineWarner';
 import SnackBar from '@/components/snackbar';
 
 export default function App({ Component, pageProps }) {
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            suspense: true,
+          },
+        },
+      }),
+  );
   return (
     <>
       <Provider store={store}>
         <Head>
-          <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-          <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon-32x32.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicon-16x16.png"
+          />
           <title>Lolo's Reads</title>
         </Head>
         <ThemeProvider theme={theme}>
@@ -39,7 +65,11 @@ export default function App({ Component, pageProps }) {
                   pb: { xs: '4em', sm: '8em' },
                 }}
               >
-                <Component {...pageProps} />
+                <QueryClientProvider client={queryClient}>
+                  <Hydrate state={pageProps.dehydratedState}>
+                    <Component {...pageProps} />
+                  </Hydrate>
+                </QueryClientProvider>
                 <SnackBar />
               </Container>
             </main>

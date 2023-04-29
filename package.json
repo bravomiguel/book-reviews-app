@@ -16,6 +16,7 @@
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.2",
     "@reduxjs/toolkit": "^1.9.5",
+    "@tanstack/react-query": "^4.29.5",
     "axios": "^1.4.0",
     "lodash": "^4.17.21",
     "mongoose": "^7.1.0",
