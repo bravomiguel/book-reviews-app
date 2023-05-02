@@ -2,22 +2,21 @@ import { useEffect } from 'react';
 import Typography from '@mui/material/Typography';
 import BooksList from '@/components/booksList';
 import { useDispatch } from 'react-redux';
-import { dehydrate, QueryClient } from '@tanstack/react-query';
 
-import { STORAGE_KEY } from '@/settings';
-import { fetchBooks } from '@/rq/httpRequests';
 import { useBooks } from '@/rq/queries';
 import { useDelete } from '@/rq/mutations';
+import dbConnect from '@/lib/db';
+import Book from '@/lib/models/book.model';
 import { setBnValue } from '@/redux/slices/bottomNavSlice';
 
-export default function Home() {
+export default function Home({initialBooks}) {
   // make sure bottom nav set to home
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(setBnValue(0));
   }, []);
 
-  const {data: books, isLoading} = useBooks();
+  const {data: books, isLoading} = useBooks({initialBooks});
   console.log(isLoading);
   // console.log(books);
 
@@ -37,13 +36,13 @@ export default function Home() {
 }
 
 export async function getStaticProps() {
-  const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery([STORAGE_KEY], fetchBooks);
+  await dbConnect();
+  const data = await Book.find({});
 
   return {
     props: {
-      dehydratedState: dehydrate(queryClient),
+      initialBooks: JSON.parse(JSON.stringify(data)),
     },
   };
 }

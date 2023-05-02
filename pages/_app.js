@@ -68,9 +68,9 @@ export default function App({ Component, pageProps }) {
                 }}
               >
                 <QueryClientProvider client={queryClient}>
-                  <Hydrate state={pageProps.dehydratedState}>
+                  {/* <Hydrate state={pageProps.dehydratedState}> */}
                     <Component {...pageProps} />
-                  </Hydrate>
+                  {/* </Hydrate> */}
                   <ReactQueryDevtools />
                 </QueryClientProvider>
                 <SnackBar />

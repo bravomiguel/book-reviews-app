@@ -9,11 +9,10 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 
-import data from '../../dummyData';
+import dbConnect from '@/lib/db';
+import Book from '@/lib/models/book.model';
 
-export default function View({ id }) {
-  const idx = data.findIndex((book) => (book._id === id));
-  const book = data.at(idx);
+export default function View({ book }) {
 
   const formRowStyle = {
     marginBlockEnd: '1.5em',
@@ -212,16 +211,21 @@ export default function View({ id }) {
 }
 
 export async function getStaticProps({ params }) {
+  await dbConnect();
+  const book = await Book.findById(params.id);
+  
   return {
     props: {
       id: params.id,
+      book: JSON.parse(JSON.stringify(book)),
     },
   };
 }
 
 export async function getStaticPaths() {
-  const books = data;
-  const paths = books.map((book) => ({params: { id: book._id}}));
+  await dbConnect();
+  const books = await Book.find({});
+  const paths = books.map((book) => ({params: { id: JSON.parse(JSON.stringify(book._id))}}));
   return {
     paths,
     fallback: true,

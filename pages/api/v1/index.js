@@ -1,4 +1,4 @@
-  import dbConnect from '@/lib/db';
+import dbConnect from '@/lib/db';
 import Book from '@/lib/models/book.model';
 
 export default async function handler(req, res) {
