@@ -13,6 +13,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import { store } from '@/redux/app/store';
 import theme from '@/theme/theme';
@@ -23,16 +24,17 @@ import OfflineWarner from '@/components/offlineWarner';
 import SnackBar from '@/components/snackbar';
 
 export default function App({ Component, pageProps }) {
-  const [queryClient] = useState(
-    () =>
-      new QueryClient({
-        defaultOptions: {
-          queries: {
-            suspense: true,
-          },
-        },
-      }),
-  );
+  // const [queryClient] = useState(
+  //   () =>
+  //     new QueryClient({
+  //       defaultOptions: {
+  //         queries: {
+  //           suspense: true,
+  //         },
+  //       },
+  //     }),
+  // );
+  const [queryClient] = useState(() => new QueryClient());
   return (
     <>
       <Provider store={store}>
@@ -69,6 +71,7 @@ export default function App({ Component, pageProps }) {
                   <Hydrate state={pageProps.dehydratedState}>
                     <Component {...pageProps} />
                   </Hydrate>
+                  <ReactQueryDevtools />
                 </QueryClientProvider>
                 <SnackBar />
               </Container>

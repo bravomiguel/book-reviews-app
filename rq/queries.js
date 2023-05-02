@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchBooks, fetchBook } from './requests';
+import { fetchBooks, fetchBook } from './httpRequests';
 import { STORAGE_KEY } from '../settings';
 
 export const useBooks = ({

@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -11,10 +10,8 @@ import ListItemText from '@mui/material/ListItemText';
 import Rating from '@mui/material/Rating';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 
-import data from '../dummyData';
-
-export default function BooksList() {
-  if (data.length === 0) {
+export default function BooksList({books=[], deleteHandler = () => {}}) {
+  if (books.length === 0) {
     return <p>Add a new review.</p>;
   }
 
@@ -22,7 +19,7 @@ export default function BooksList() {
 
   return (
     <List>
-      {data.map(({ title, rating, _id, avatarUrl }) => (
+      {books.map(({ title, rating, _id, avatarUrl }) => (
         <div key={_id} onClick={() => {router.push(`/view/${_id}`)}} style={{ cursor: "pointer" }}>
           <ListItem
             // key={_id}
@@ -63,6 +60,7 @@ export default function BooksList() {
             <IconButton
               aria-label="delete"
               onClick={(event) => {
+                deleteHandler(_id);
                 event.stopPropagation();
                 router.push(`/`);
                 }}
