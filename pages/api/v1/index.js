@@ -3,14 +3,9 @@ import Book from '@/lib/models/book.model';
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {
-    let query = {};
-    const { id } = req.query;
-    if (id) {
-      query._id = id;
-    }
     try {
       await dbConnect();
-      const data = await Book.find(query);
+      const data = await Book.find({});
       res.status(200).send(data);
     } catch (err) {
       res.status(500).send(err);
@@ -31,7 +26,7 @@ export default async function handler(req, res) {
     res
       .status(400)
       .send(
-        `Method ${req.method} not supported for ${new URL(req.url).pathname}`,
+        `Method ${req.method} not supported for this endpoint`,
       );
   }
 }

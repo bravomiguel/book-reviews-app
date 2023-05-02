@@ -2,6 +2,20 @@ import dbConnect from '@/lib/db';
 import Book from '@/lib/models/book.model';
 
 export default async function handler(req, res) {
+  if (req.method === 'GET') {
+    let query = {};
+    const { id } = req.query;
+    if (id) {
+      query._id = id;
+    }
+    try {
+      await dbConnect();
+      const data = await Book.find(query);
+      res.status(200).send(data);
+    } catch (err) {
+      res.status(500).send(err);
+    }
+  }
   if (req.method === 'PUT') {
     const { id } = req.query;
     const updates = req.body;
@@ -27,7 +41,7 @@ export default async function handler(req, res) {
     res
       .status(400)
       .send(
-        `Method ${req.method} not supported for ${new URL(req.url).pathname}`,
+        `Method ${req.method} not supported for this endpoint`,
       );
   }
 }
