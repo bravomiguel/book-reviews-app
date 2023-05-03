@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import Typography from '@mui/material/Typography';
+import { useRouter } from 'next/router';
 
 import BookSearch from '@/components/bookSearch';
 import BookForm from '@/components/forms/bookForm';
@@ -14,6 +15,7 @@ import {
   selectInputValue,
   selectResults,
 } from '@/redux/slices/bookSearchSlice';
+import { useAdd } from '@/rq/mutations';
 
 export default function Add() {
   // make sure bottom nav set to add book
@@ -46,6 +48,14 @@ export default function Add() {
     dispatch(searchBooks(searchInputValue));
   };
 
+  // handle book form submit
+  const addMutation = useAdd();
+  const router = useRouter();
+  const submitHandler = (data) => {
+    addMutation.mutate(data);
+    router.push('/');
+  };
+
   return (
     <>
       <Typography variant="h4" component="h3" sx={{ marginBottom: '0.5em' }}>
@@ -58,7 +68,7 @@ export default function Add() {
         onChange={searchOnChange}
         onInputChange={searchOnInputChange}
       />
-      <BookForm searchValue={searchValue} />
+      <BookForm submitHandler={submitHandler} searchValue={searchValue} />
     </>
   );
 }
