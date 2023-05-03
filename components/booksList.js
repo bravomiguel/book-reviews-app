@@ -9,8 +9,11 @@ import Avatar from '@mui/material/Avatar';
 import ListItemText from '@mui/material/ListItemText';
 import Rating from '@mui/material/Rating';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
+import CircularProgress from '@mui/material/CircularProgress';
 
-export default function BooksList({books=[], deleteHandler = () => {}}) {
+export default function BooksList({isFetching = false, books=[], deleteHandler = () => {}}) {
+  if (isFetching) return <CircularProgress sx={{position: "fixed", bottom: "50%", right: "50%"}} />;
+  
   if (books.length === 0) {
     return <p>Add a new review.</p>;
   }
@@ -22,10 +25,7 @@ export default function BooksList({books=[], deleteHandler = () => {}}) {
       {books.map(({ title, rating, _id, avatarUrl }) => (
         <div key={_id} onClick={() => {router.push(`/view/${_id}`)}} style={{ cursor: "pointer" }}>
           <ListItem
-            // key={_id}
             sx={{ marginBottom: '0.5em', color: 'inherit' }}
-            // href={`/view/${_id}`}
-            // component={Link}
           >
             <ListItemAvatar>
               <Avatar

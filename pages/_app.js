@@ -9,7 +9,7 @@ import '@fontsource/roboto/700.css';
 import { Provider } from 'react-redux';
 import { useState } from 'react';
 import {
-  Hydrate,
+  // Hydrate,
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query';
@@ -22,6 +22,7 @@ import BottomNav from '@/components/bottomNav';
 import '../styles/globals.css';
 import OfflineWarner from '@/components/offlineWarner';
 import SnackBar from '@/components/snackbar';
+import { QueryBoundary } from '@/components/queryBoundary';
 
 export default function App({ Component, pageProps }) {
   // const [queryClient] = useState(
@@ -68,9 +69,11 @@ export default function App({ Component, pageProps }) {
                 }}
               >
                 <QueryClientProvider client={queryClient}>
-                  {/* <Hydrate state={pageProps.dehydratedState}> */}
-                    <Component {...pageProps} />
-                  {/* </Hydrate> */}
+                  <QueryBoundary>
+                    {/* <Hydrate state={pageProps.dehydratedState}> */}
+                      <Component {...pageProps} />
+                    {/* </Hydrate> */}
+                  </QueryBoundary>
                   <ReactQueryDevtools />
                 </QueryClientProvider>
                 <SnackBar />

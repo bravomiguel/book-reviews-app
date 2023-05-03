@@ -16,8 +16,11 @@ export default function Home({initialBooks}) {
     dispatch(setBnValue(0));
   }, []);
 
-  const {data: books, isLoading} = useBooks({initialBooks});
+  // const query = useBooks({initialBooks});
+  // console.log(query);
+  const {data: books, isLoading, isFetching} = useBooks({initialBooks});
   console.log(isLoading);
+  console.log(isFetching);
   // console.log(books);
 
   const deleteMutation = useDelete();
@@ -30,7 +33,7 @@ export default function Home({initialBooks}) {
       <Typography variant="h4" component="h3">
         Book Reviews
       </Typography>
-      <BooksList books={books} deleteHandler={deleteHandler} />
+      <BooksList isFetching={isFetching} books={books} deleteHandler={deleteHandler} />
     </>
   );
 }
