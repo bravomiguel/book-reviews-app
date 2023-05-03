@@ -51,8 +51,8 @@ export default function Add() {
   // handle book form submit
   const addMutation = useAdd();
   const router = useRouter();
-  const submitHandler = (data) => {
-    addMutation.mutate(data);
+  const submitHandler = (vals) => {
+    addMutation.mutate(vals);
     router.push('/');
   };
 
