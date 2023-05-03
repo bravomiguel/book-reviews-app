@@ -2,3 +2,7 @@
 .css-18kokwj-MuiButtonBase-root-MuiBottomNavigationAction-root.Mui-selected {
   color: white;
 }
+
+.MuiList-root {
+  padding-top: 0;
+}

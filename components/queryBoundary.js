@@ -10,7 +10,7 @@ const LoadingView = () => <CircularProgress sx={{position: "fixed", bottom: "50%
 // Error + Retry
 const ErrorView = ({ error, resetErrorBoundary }) => {
   return (
-    <div>
+    <div style={{position: "fixed", bottom: "50%", right: "50%"}}>
       <div>{error.message}</div>
       <Button variant="contained" onClick={resetErrorBoundary}>
         RETRY

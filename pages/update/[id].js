@@ -21,9 +21,6 @@ export default function Update({ book }) {
 
   return (
     <>
-      <Typography variant="h4" component="h3" sx={{ marginBottom: '0.5em' }}>
-        Update Review
-      </Typography>
       <BookForm submitHandler={submitHandler} book={book} />
     </>
   );
@@ -37,6 +34,7 @@ export async function getStaticProps({ params }) {
     props: {
       id: params.id,
       book: JSON.parse(JSON.stringify(book)),
+      pageTitle: "Update Review",
     },
   };
 }

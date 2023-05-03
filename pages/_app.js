@@ -23,6 +23,7 @@ import '../styles/globals.css';
 import OfflineWarner from '@/components/offlineWarner';
 import SnackBar from '@/components/snackbar';
 import { QueryBoundary } from '@/components/queryBoundary';
+import PageTitle from '@/components/pageTitle';
 
 export default function App({ Component, pageProps }) {
   // const [queryClient] = useState(
@@ -69,11 +70,13 @@ export default function App({ Component, pageProps }) {
                 }}
               >
                 <QueryClientProvider client={queryClient}>
-                  <QueryBoundary>
-                    {/* <Hydrate state={pageProps.dehydratedState}> */}
-                      <Component {...pageProps} />
-                    {/* </Hydrate> */}
-                  </QueryBoundary>
+                  <PageTitle pageTitle={pageProps.pageTitle}>
+                    <QueryBoundary>
+                      {/* <Hydrate state={pageProps.dehydratedState}> */}
+                        <Component {...pageProps} />
+                      {/* </Hydrate> */}
+                    </QueryBoundary>
+                  </PageTitle>
                   <ReactQueryDevtools />
                 </QueryClientProvider>
                 <SnackBar />

@@ -58,9 +58,6 @@ export default function Add() {
 
   return (
     <>
-      <Typography variant="h4" component="h3" sx={{ marginBottom: '0.5em' }}>
-        Add Review
-      </Typography>
       <BookSearch
         value={searchValue}
         inputValue={searchInputValue}
@@ -71,4 +68,12 @@ export default function Add() {
       <BookForm submitHandler={submitHandler} searchValue={searchValue} />
     </>
   );
+}
+
+export async function getStaticProps() {
+  return {
+    props: {
+      pageTitle: "Add Review",
+    },
+  };
 }
