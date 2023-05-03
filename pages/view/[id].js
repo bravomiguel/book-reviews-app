@@ -8,11 +8,21 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
+import { useRouter } from 'next/router';
 
 import dbConnect from '@/lib/db';
 import Book from '@/lib/models/book.model';
+import { useDelete } from '@/rq/mutations';
 
 export default function View({ book }) {
+
+  // handle when use clicks delete 
+  const deleteMutation = useDelete();
+  const router = useRouter();
+  const deleteHandler = (id) => {
+    deleteMutation.mutate(id);
+    router.push('/');
+  };
 
   const formRowStyle = {
     marginBlockEnd: '1.5em',
@@ -86,7 +96,7 @@ export default function View({ book }) {
           sx={{ gridArea: 'delete' }}
           href={'/'}
           component={Link}
-          onClick={() => deleteHandler(book.id)}
+          onClick={() => deleteHandler(book._id)}
         >
           <DeleteIcon />
         </IconButton>
