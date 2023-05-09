@@ -44,7 +44,7 @@ export default function View({ book }) {
     >
       <Avatar
         variant="square"
-        src={book.avatarUrl}
+        src={book?.avatarUrl}
         sx={{
           width: '4.5em',
           height: '100%',
@@ -53,7 +53,7 @@ export default function View({ book }) {
           gridArea: 'img',
         }}
       >
-        {book.avatarUrl ? null : (
+        {book?.avatarUrl ? null : (
           <AutoStoriesIcon sx={{ height: '2.4em' }} />
         )}
       </Avatar>
@@ -64,18 +64,18 @@ export default function View({ book }) {
           gutterBottom
           sx={{ gridArea: 'title' }}
         >
-          {book.title}
+          {book?.title}
         </Typography>
         <Typography
           variant="subtitle1"
           gutterBottom
           sx={{ gridArea: 'author' }}
         >
-          {book.author}
+          {book?.author}
         </Typography>
         <Rating
           name="half-rating-read"
-          defaultValue={book.rating}
+          defaultValue={book?.rating}
           precision={0.5}
           readOnly
           size="large"
@@ -85,7 +85,7 @@ export default function View({ book }) {
       <div style={{ gridArea: 'icons' }}>
         <IconButton
           size="large"
-          href={`/update/${book._id}`}
+          href={`/update/${book?._id}`}
           component={Link}
           sx={{ gridArea: 'edit' }}
         >
@@ -96,14 +96,14 @@ export default function View({ book }) {
           sx={{ gridArea: 'delete' }}
           href={'/'}
           component={Link}
-          onClick={() => deleteHandler(book._id)}
+          onClick={() => deleteHandler(book?._id)}
         >
           <DeleteIcon />
         </IconButton>
       </div>
     </div>
     <div style={formRowStyle}>
-      {book.feelings && (
+      {book?.feelings && (
         <Card sx={{ minWidth: 275 }} fullWidth>
           <CardContent>
             <Typography
@@ -114,14 +114,14 @@ export default function View({ book }) {
               How did this book make you feel?
             </Typography>
             <Typography variant="p" component="div" sx={{ fontSize: '1em' }}>
-              {book.feelings}
+              {book?.feelings}
             </Typography>
           </CardContent>
         </Card>
       )}
     </div>
     <div style={formRowStyle}>
-      {book.characters && (
+      {book?.characters && (
         <Card sx={{ minWidth: 275 }} fullWidth>
           <CardContent>
             <Typography
@@ -132,14 +132,14 @@ export default function View({ book }) {
               Who were your favourite characters?
             </Typography>
             <Typography variant="p" component="div" sx={{ fontSize: '1em' }}>
-              {book.characters}
+              {book?.characters}
             </Typography>
           </CardContent>
         </Card>
       )}
     </div>
     <div style={formRowStyle}>
-      {book.writingStyle && (
+      {book?.writingStyle && (
         <Card sx={{ minWidth: 275 }} fullWidth>
           <CardContent>
             <Typography
@@ -150,14 +150,14 @@ export default function View({ book }) {
               What were your thoughts on the writing style?
             </Typography>
             <Typography variant="p" component="div" sx={{ fontSize: '1em' }}>
-              {book.writingStyle}
+              {book?.writingStyle}
             </Typography>
           </CardContent>
         </Card>
       )}
     </div>
     <div style={formRowStyle}>
-      {book.notLiked && (
+      {book?.notLiked && (
         <Card sx={{ minWidth: 275 }} fullWidth>
           <CardContent>
             <Typography
@@ -168,14 +168,14 @@ export default function View({ book }) {
               Was there anything you didn't like?
             </Typography>
             <Typography variant="p" component="div" sx={{ fontSize: '1em' }}>
-              {book.notLiked}
+              {book?.notLiked}
             </Typography>
           </CardContent>
         </Card>
       )}
     </div>
     <div style={formRowStyle}>
-      {book.mostEnjoyed && (
+      {book?.mostEnjoyed && (
         <Card sx={{ minWidth: 275 }} fullWidth>
           <CardContent>
             <Typography
@@ -186,14 +186,14 @@ export default function View({ book }) {
               What did you most enjoy?
             </Typography>
             <Typography variant="p" component="div" sx={{ fontSize: '1em' }}>
-              {book.mostEnjoyed}
+              {book?.mostEnjoyed}
             </Typography>
           </CardContent>
         </Card>
       )}
     </div>
     <div style={formRowStyle}>
-      {book.other && (
+      {book?.other && (
         <Card sx={{ minWidth: 275 }} fullWidth>
           <CardContent>
             <Typography
@@ -204,18 +204,18 @@ export default function View({ book }) {
               Any other comments?
             </Typography>
             <Typography variant="p" component="div" sx={{ fontSize: '1em' }}>
-              {book.other}
+              {book?.other}
             </Typography>
           </CardContent>
         </Card>
       )}
     </div>
-    {!book.feelings &&
-      !book.characters &&
-      !book.writingStyle &&
-      !book.notLiked &&
-      !book.mostEnjoyed &&
-      !book.other && <p>Add more info to your review.</p>}
+    {!book?.feelings &&
+      !book?.characters &&
+      !book?.writingStyle &&
+      !book?.notLiked &&
+      !book?.mostEnjoyed &&
+      !book?.other && <p>Add more info to your review.</p>}
   </>
   );
 }

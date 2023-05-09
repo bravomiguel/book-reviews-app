@@ -7,15 +7,15 @@ export const useBooks = ({
   onError = (err) => {
     console.log(err);
   },
-  initialData = [],
+  // initialData = [],
 } = {}) =>
   useQuery({
-    // suspense: true,
+    suspense: true,
     queryKey: [STORAGE_KEY],
     queryFn: fetchBooks,
     onSuccess,
     onError,
-    initialData,
+    // initialData,
   });
 
 export const useBook = ({
@@ -26,7 +26,7 @@ export const useBook = ({
   },
 } = {}) =>
   useQuery({
-    // suspense: true,
+    suspense: true,
     queryKey: [STORAGE_KEY, id],
     queryFn: () => fetchBook(id),
     onSuccess,

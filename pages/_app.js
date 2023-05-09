@@ -9,7 +9,7 @@ import '@fontsource/roboto/700.css';
 import { Provider } from 'react-redux';
 import { useState } from 'react';
 import {
-  // Hydrate,
+  Hydrate,
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query';
@@ -26,17 +26,17 @@ import { QueryBoundary } from '@/components/queryBoundary';
 import PageTitle from '@/components/pageTitle';
 
 export default function App({ Component, pageProps }) {
-  // const [queryClient] = useState(
-  //   () =>
-  //     new QueryClient({
-  //       defaultOptions: {
-  //         queries: {
-  //           suspense: true,
-  //         },
-  //       },
-  //     }),
-  // );
-  const [queryClient] = useState(() => new QueryClient());
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            suspense: true,
+          },
+        },
+      }),
+  );
+  // const [queryClient] = useState(() => new QueryClient());
   return (
     <>
       <Provider store={store}>
@@ -72,9 +72,9 @@ export default function App({ Component, pageProps }) {
                 <QueryClientProvider client={queryClient}>
                   <PageTitle pageTitle={pageProps.pageTitle}>
                     <QueryBoundary>
-                      {/* <Hydrate state={pageProps.dehydratedState}> */}
+                      <Hydrate state={pageProps.dehydratedState}>
                         <Component {...pageProps} />
-                      {/* </Hydrate> */}
+                      </Hydrate>
                     </QueryBoundary>
                   </PageTitle>
                   <ReactQueryDevtools />
