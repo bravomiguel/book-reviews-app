@@ -14,7 +14,7 @@ export default function Header() {
       elevation={0}
       sx={{ position: 'fixed', top: 0, borderBottom: '1px solid #D3D3D3', zIndex: 2}}
     >
-      <Toolbar sx={{ gap: '1em', height: '4em', display: 'flex', justifyContent: 'space-between', paddingTop: {xs:'3.5em', sm: '1em'}, paddingBottom: '1em' }}>
+      <Toolbar sx={{ gap: '1em', height: '4em', display: 'flex', justifyContent: 'space-between', paddingTop: '1em', paddingBottom: '1em' }}>
         <Button
           variant='text'
           onClick={() => {

@@ -30,7 +30,7 @@ export default function BottomNav() {
           xs: `${bnDisplay}`,
           sm: 'none',
         },
-        paddingBottom: '3.5em',
+        paddingBottom: '1.5em',
         paddingTop: '1.5em',
         borderTop: '1px solid #D3D3D3',
         justifyContent: 'space-evenly',
