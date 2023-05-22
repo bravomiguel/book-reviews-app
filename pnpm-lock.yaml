@@ -40,9 +40,6 @@ dependencies:
   next:
     specifier: 13.3.1
     version: 13.3.1(react-dom@18.2.0)(react@18.2.0)
-  next-connect:
-    specifier: ^1.0.0
-    version: 1.0.0
   react:
     specifier: 18.2.0
     version: 18.2.0
@@ -568,10 +565,6 @@ packages:
       use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false
 
-  /@tsconfig/node16@1.0.4:
-    resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
-    dev: false
-
   /@types/hoist-non-react-statics@3.3.1:
     resolution: {integrity: sha512-iMIqiko6ooLrTh1joXodJK5X9xeEALT1kM5G3ZLhD3hszxBdIEd5C75U834D9mLcINgD4OyZf5uQXjkuYydWvA==}
     dependencies:
@@ -986,14 +979,6 @@ packages:
     hasBin: true
     dev: false
 
-  /next-connect@1.0.0:
-    resolution: {integrity: sha512-FeLURm9MdvzY1SDUGE74tk66mukSqL6MAzxajW7Gqh6DZKBZLrXmXnGWtHJZXkfvoi+V/DUe9Hhtfkl4+nTlYA==}
-    engines: {node: '>=16'}
-    dependencies:
-      '@tsconfig/node16': 1.0.4
-      regexparam: 2.0.1
-    dev: false
-
   /next@13.3.1(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-eByWRxPzKHs2oQz1yE41LX35umhz86ZSZ+mYyXBqn2IBi2hyUqxBA88avywdr4uyH+hCJczegGsDGWbzQA5Rqw==}
     engines: {node: '>=14.18.0'}
@@ -1208,11 +1193,6 @@ packages:
 
   /regenerator-runtime@0.13.11:
     resolution: {integrity: sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==}
-    dev: false
-
-  /regexparam@2.0.1:
-    resolution: {integrity: sha512-zRgSaYemnNYxUv+/5SeoHI0eJIgTL/A2pUtXUPLHQxUldagouJ9p+K6IbIZ/JiQuCEv2E2B1O11SjVQy3aMCkw==}
-    engines: {node: '>=8'}
     dev: false
 
   /remove-accents@0.4.2:
