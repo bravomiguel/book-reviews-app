@@ -4,7 +4,6 @@ import Book from '@/lib/models/book.model';
 export default async function handler(req, res) {
   if (req.method === 'GET') {
     const { id } = req.query;
-    console.log(id);
     try {
       await dbConnect();
       const data = await Book.findById(id)
