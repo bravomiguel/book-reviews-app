@@ -7,7 +7,9 @@ export const fetchBooks = async () => {
 };
 
 export const fetchBook = async (id) => {
-  const response = await axios({ url: `${API_ENDPOINT}${id}`, baseURL: '/' });
+  // console.log(`id`, id);
+  const response = await axios({ url: `${API_ENDPOINT}${id}` });
+  // console.log(`response`, response);
   return response.data;
 };
 
