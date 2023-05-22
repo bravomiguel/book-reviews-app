@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     const { id } = req.query;
     try {
       await dbConnect();
-      const data = await Book.findById(id)
+      const data = await Book.findById(id).exec();
       if (data === null) {
         res.status(404).send(data);
       }
