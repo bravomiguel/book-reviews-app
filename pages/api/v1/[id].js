@@ -2,24 +2,23 @@ import dbConnect from '@/lib/db';
 import Book from '@/lib/models/book.model';
 
 export default async function handler(req, res) {
+  await dbConnect();
   if (req.method === 'GET') {
     const { id } = req.query;
     try {
-      await dbConnect();
+      // await dbConnect();
       const data = await Book.findById(id)
-      if (data === null) {
-        res.status(404).send(data);
-      }
+      // if (data === null) return res.status(404).send(data);
       res.status(200).send(data);
     } catch (err) {
       res.status(500).send(err);
     }
   }
-  if (req.method === 'PUT') {
+  else if (req.method === 'PUT') {
     const { id } = req.query;
     const updates = req.body;
     try {
-      await dbConnect();
+      // await dbConnect();
       const result = await Book.updateOne({ _id: id }, updates);
       if (result.n === 0) return res.status(400);
       res.status(200).json(result);
@@ -29,7 +28,7 @@ export default async function handler(req, res) {
   } else if (req.method === 'DELETE') {
     const { id } = req.query;
     try {
-      await dbConnect();
+      // await dbConnect();
       const result = await Book.deleteOne({ _id: id });
       if (result.n === 0) return res.status(404);
       res.status(204).json(result);
@@ -37,10 +36,6 @@ export default async function handler(req, res) {
       res.status(500).json(err);
     }
   } else {
-    res
-      .status(400)
-      .send(
-        `Method ${req.method} not supported for this endpoint`,
-      );
+    res.status(400).send(`Method ${req.method} not supported for this endpoint`);
   }
 }
