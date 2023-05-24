@@ -240,6 +240,7 @@ export async function getStaticProps({ params }) {
       id: params.id,
       dehydratedState: dehydrate(queryClient),
     },
+    revalidate: 60,
   };
 }
 

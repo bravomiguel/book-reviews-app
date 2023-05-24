@@ -48,6 +48,7 @@ export async function getStaticProps({ params }) {
       dehydratedState: dehydrate(queryClient),
       pageTitle: 'Update Review',
     },
+    revalidate: 60,
   };
 }
 
